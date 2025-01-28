@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='mssqldbfacade',
-    version='1.0.0',
+    version='1.0.5',
     description='A package to implement a facade for accessing MSSQL databases',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='Alan Medina',
-    author_email='alan.medina@beetmann.com',
+    author_email='amedina.escom@hotmail.com',
     url='https://github.com/amedinag32/mssqldbfacade',
     packages=find_packages(),
     classifiers=[

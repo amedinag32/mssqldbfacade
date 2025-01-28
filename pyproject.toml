@@ -1,8 +1,8 @@
 [project]
 name = "mssqldbfacade"
-version = "1.0.0"
+version = "1.0.5"
 authors = [
-  { name="Alan Medina", email="alan.medina@beetmann.com" },
+  { name="Alan Medina", email="amedina.escom@hotmail.com" },
 ]
 description = "A package implement a facade fro acces to database mssql"
 readme = "README.md"

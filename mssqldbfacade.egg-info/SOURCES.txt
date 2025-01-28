@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.py
+mssqldbfacade/__init__.py
+mssqldbfacade/facade.py
+mssqldbfacade/singleton.py
+mssqldbfacade.egg-info/PKG-INFO
+mssqldbfacade.egg-info/SOURCES.txt
+mssqldbfacade.egg-info/dependency_links.txt
+mssqldbfacade.egg-info/requires.txt
+mssqldbfacade.egg-info/top_level.txt

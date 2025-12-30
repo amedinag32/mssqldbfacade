@@ -31,7 +31,7 @@ class DatabaseFacade:
  
     def to_sql(self, data: DataFrame, table: str) -> None:
         try:
-            with self.engine.begin() as connection:
+            with self.db.engine.begin() as connection:
                 data.to_sql(
                     name=table,
                     con=connection,
@@ -65,3 +65,27 @@ class DatabaseFacade:
             exec(f"{var_name} = dataframe")
             
         return sqldf(query, locals())
+
+    def merge(self, table: str, values: dict, unique_columns: list):
+        columns = ", ".join(values.keys())
+        values_str = ", ".join(
+            f"'{v}'" if ("SELECT" not in str(v).upper() and "NULL" not in str(v).upper()) else str(v)
+            for v in values.values()
+        )
+        update_str = ", ".join(f"{k} = source.{k}" for k in values.keys())
+        
+        # Crear la condición ON con múltiples columnas
+        on_condition = " AND ".join(f"target.{col} = source.{col}" for col in unique_columns)
+        
+        query = f'''
+            MERGE INTO {table} AS target
+            USING (VALUES ({values_str})) AS source ({columns})
+            ON {on_condition}
+            WHEN NOT MATCHED THEN
+                INSERT ({columns}) VALUES ({values_str})
+            WHEN MATCHED THEN
+                UPDATE SET {update_str};
+        '''
+        # print(query)
+        self.transaction(query)
+        # print("ok")

@@ -7,12 +7,12 @@ class SingletonMeta(type):
     _instances = {}
     _lock: Lock = Lock()
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, connection_string, *args, **kwargs):
         with cls._lock:
-            if cls not in cls._instances:
-                instance = super().__call__(*args, **kwargs)
-                cls._instances[cls] = instance
-        return cls._instances[cls]
+            if connection_string not in cls._instances:
+                instance = super().__call__(connection_string, *args, **kwargs)
+                cls._instances[connection_string] = instance
+        return cls._instances[connection_string]
 
 class Singleton(metaclass=SingletonMeta):
     engine: Engine = None

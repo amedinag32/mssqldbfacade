@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: mssqldbfacade
-Version: 1.0.5
+Version: 1.0.9
 Summary: A package to implement a facade for accessing MSSQL databases
 Home-page: https://github.com/amedinag32/mssqldbfacade
 Author: Alan Medina
